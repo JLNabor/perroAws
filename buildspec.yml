@@ -5,7 +5,7 @@ phases:
       nodejs: 10
     commands:
       - npm install --save-dev @angular-devkit/build-angular
-      - npm install -g @angular/cli@6.2.5
+      - npm install -g @angular/cli@8.3.9
   build:
     commands:
       - ng build --prod
@@ -14,7 +14,6 @@ phases:
       - aws s3 sync dist/ s3://aws-angular-s3 
 artifacts:
   type: zip
-  base-directory: 
+  base-directory: dist
   files:
-    - appspec.yml
     - '**/*'
