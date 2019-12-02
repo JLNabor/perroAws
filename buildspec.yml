@@ -1,0 +1,20 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm install --save-dev @angular-devkit/build-angular
+      - npm install -g @angular/cli@6.2.5
+  build:
+    commands:
+      - ng build --prod
+  post_build:
+    commands:
+      - aws s3 sync dist/ s3://aws-angular-s3 
+artifacts:
+  type: zip
+  base-directory: 
+  files:
+    - appspec.yml
+    - '**/*'
